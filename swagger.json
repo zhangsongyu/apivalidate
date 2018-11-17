@@ -1,0 +1,531 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "This is a sample for swagger-maven-plugin",
+    "version" : "v1",
+    "title" : "Swagger Maven Plugin Sample",
+    "termsOfService" : "http://www.github.com/kongchen/swagger-maven-plugin",
+    "contact" : {
+      "name" : "Kong Chen",
+      "url" : "http://kongch.com",
+      "email" : "kongchen@gmail.com"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host" : "petstore.swagger.wordnik.com",
+  "basePath" : "gs-svm",
+  "tags" : [ {
+    "name" : "gitlab 登录管理"
+  }, {
+    "name" : "字典管理"
+  }, {
+    "name" : "帐户管理"
+  }, {
+    "name" : "组件管理"
+  } ],
+  "schemes" : [ "http", "https" ],
+  "paths" : {
+    "/account/role/permissions" : {
+      "get" : {
+        "tags" : [ "帐户管理" ],
+        "operationId" : "accountRolePermissions",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/R"
+            }
+          }
+        }
+      }
+    },
+    "/authorize" : {
+      "get" : {
+        "tags" : [ "gitlab 登录管理" ],
+        "operationId" : "auth",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "/dictionary/{type}" : {
+      "get" : {
+        "tags" : [ "字典管理" ],
+        "operationId" : "dict",
+        "parameters" : [ {
+          "name" : "type",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/R"
+            }
+          }
+        }
+      }
+    },
+    "/index" : {
+      "get" : {
+        "tags" : [ "gitlab 登录管理" ],
+        "operationId" : "gitlabCallback",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "/project/get/{projectId}" : {
+      "get" : {
+        "tags" : [ "组件管理" ],
+        "summary" : "组件管理-组件详情",
+        "description" : "",
+        "operationId" : "projectInfo",
+        "parameters" : [ {
+          "name" : "projectId",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/R"
+            }
+          }
+        }
+      }
+    },
+    "/project/set" : {
+      "post" : {
+        "tags" : [ "组件管理" ],
+        "summary" : "组件管理-组件详情-基本信息-编辑",
+        "description" : "",
+        "operationId" : "projectSet",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ProjectDTO"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "integer",
+              "format" : "int32"
+            }
+          }
+        }
+      }
+    },
+    "/project/versions/edit" : {
+      "post" : {
+        "tags" : [ "组件管理" ],
+        "summary" : "组件详情-组件版本-编辑版本状态",
+        "description" : "",
+        "operationId" : "versionsEdit",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Versions"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/R"
+            }
+          }
+        }
+      }
+    },
+    "/project/{projectId}/versionfs" : {
+      "post" : {
+        "tags" : [ "组件管理" ],
+        "summary" : "组件管理-组件详情-组件版本",
+        "description" : "",
+        "operationId" : "projectVfgfgfersions",
+        "parameters" : [ {
+          "name" : "projectId",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "haha",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ProjectVersionsDTO"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/R"
+            }
+          }
+        }
+      }
+    },
+    "/project/{projectId}/versions" : {
+      "post" : {
+        "tags" : [ "组件管理" ],
+        "summary" : "组件管理-组件详情-组件版本",
+        "description" : "",
+        "operationId" : "projectVersions",
+        "parameters" : [ {
+          "name" : "projectId",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ProjectVersionsDTO"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/R"
+            }
+          }
+        }
+      }
+    },
+    "/selectByWrapper" : {
+      "get" : {
+        "tags" : [ "组件管理" ],
+        "operationId" : "getUserByWrapper",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    },
+    "/subscribe/get" : {
+      "get" : {
+        "tags" : [ "组件管理" ],
+        "summary" : "组件管理-订阅组件",
+        "description" : "",
+        "operationId" : "subscribeGet",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/R"
+            }
+          }
+        }
+      }
+    },
+    "/subscribe/get/about" : {
+      "post" : {
+        "tags" : [ "组件管理" ],
+        "summary" : "组件管理-组件列表",
+        "description" : "",
+        "operationId" : "projectsByPage",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ProjectDTO"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/R"
+            }
+          }
+        }
+      }
+    },
+    "/subscribe/save" : {
+      "post" : {
+        "tags" : [ "组件管理" ],
+        "summary" : "订阅/取消订阅",
+        "description" : "",
+        "operationId" : "subscribe",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/AccountProject"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "boolean"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "AccountProject" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "projectCode" : {
+          "type" : "string"
+        },
+        "accountCode" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "Page" : {
+      "type" : "object",
+      "properties" : {
+        "records" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object"
+          }
+        },
+        "total" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "size" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "current" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "pages" : {
+          "type" : "integer",
+          "format" : "int64"
+        }
+      }
+    },
+    "ProjectDTO" : {
+      "type" : "object",
+      "properties" : {
+        "projectId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "downloadable" : {
+          "type" : "boolean"
+        },
+        "componentEn" : {
+          "type" : "string"
+        },
+        "componentCn" : {
+          "type" : "string"
+        },
+        "componentName" : {
+          "type" : "string"
+        },
+        "componentType" : {
+          "type" : "string"
+        },
+        "componentDescription" : {
+          "type" : "string"
+        },
+        "componentNewVersion" : {
+          "type" : "string"
+        },
+        "accountId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "username" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "page" : {
+          "$ref" : "#/definitions/Page"
+        }
+      }
+    },
+    "ProjectVersionsDTO" : {
+      "type" : "object",
+      "properties" : {
+        "updatedAt" : {
+          "type" : "string"
+        },
+        "projectVersion" : {
+          "type" : "string"
+        },
+        "commitSha" : {
+          "type" : "string"
+        },
+        "jobStatus" : {
+          "type" : "string"
+        },
+        "versionStatus" : {
+          "type" : "string"
+        },
+        "commitUser" : {
+          "type" : "string"
+        },
+        "downloadable" : {
+          "type" : "boolean"
+        },
+        "downloadUrl" : {
+          "type" : "string"
+        },
+        "ossUrl" : {
+          "type" : "string"
+        },
+        "page" : {
+          "$ref" : "#/definitions/Page"
+        },
+        "isExtendTime" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "startTime" : {
+          "type" : "string"
+        },
+        "endTime" : {
+          "type" : "string"
+        },
+        "accessLevel" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "R" : {
+      "type" : "object",
+      "properties" : {
+        "data" : {
+          "type" : "object"
+        },
+        "errorCode" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "msg" : {
+          "type" : "string"
+        },
+        "success" : {
+          "type" : "boolean"
+        },
+        "total" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "current" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "size" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "pages" : {
+          "type" : "integer",
+          "format" : "int64"
+        }
+      }
+    },
+    "Versions" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "projectId" : {
+          "type" : "string"
+        },
+        "commitMsg" : {
+          "type" : "string"
+        },
+        "updatedAt" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "projectVersion" : {
+          "type" : "string"
+        },
+        "jobStatus" : {
+          "type" : "string"
+        },
+        "versionStatus" : {
+          "type" : "string"
+        },
+        "commitSha" : {
+          "type" : "string"
+        },
+        "commitUser" : {
+          "type" : "string"
+        },
+        "ossUrl" : {
+          "type" : "string"
+        },
+        "downloadable" : {
+          "type" : "boolean"
+        },
+        "tag" : {
+          "type" : "boolean"
+        }
+      }
+    }
+  }
+}
