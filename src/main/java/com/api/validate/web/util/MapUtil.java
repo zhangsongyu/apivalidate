@@ -13,6 +13,8 @@ public class MapUtil {
     }
 
     public static Object mapValueByPath() {
+
+
         return 0;
     }
 
@@ -40,11 +42,10 @@ public class MapUtil {
                 if (v instanceof Map) {
                     lastkey = lastkey + "." + k;
                     System.out.println("map：  " + perfix + path + lastkey + "->" + v);
-                    result.add(new FlattenKV<>(perfix + path + lastkey, v));
+                //    result.add(new FlattenKV<>(perfix + path + lastkey, v));
                     printMap((Map<String, Object>) v);
                 } else {
                     path = path + lastkey + "." + k;
-                    result.add(new FlattenKV<>(perfix + path, v));
                     result.add(new FlattenKV<>(perfix + path, v));
                     System.out.println("value :  " + perfix + path + "->" + v);
                 }
